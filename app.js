@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import { errorHandling, notFound } from "./middlewares/index.js";
 import { dbConnection } from "./dbconnection/index.js";
-import { admin, user } from "./routes/index.js";
+import { admin, user ,administrater } from "./routes/index.js";
 const app = express();
 const port = 4000;
 
@@ -18,6 +18,8 @@ app.use(
 
 app.use("/admin", admin);
 app.use("/user", user);
+app.use("/administrater",administrater );
+
 
 app.use("*", notFound);
 app.use(errorHandling);

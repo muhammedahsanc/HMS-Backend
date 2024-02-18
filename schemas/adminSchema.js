@@ -7,6 +7,7 @@ const schemaData = new Schema(
     username: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     forgetPassword: { type: String },
+    role:{type:String,default:'admin'},
     status: { type: Boolean, default: true }
   },
   {

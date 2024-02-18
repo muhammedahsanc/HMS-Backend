@@ -1,15 +1,14 @@
 import {administraterMdl} from "../../model/admin/index.js";
 
 
-const createAdministrater =async (req,res,next)=>{
+const createDoctor =async (req,res,next)=>{
   try{
         const username = req.body.username;
         const password = req.body.password;
-        const name = req.body.name;
-        const role = req.body.role;
-        const adminRole = req.user.role;
+        const name = req.body.doctorName;
+        const department = req.body.role;
         if(adminRole=='admin'){
-          const data = await administraterMdl({ username,password,name,role });
+          const data = await administraterMdl({ username,password,name,department });
           if (data instanceof Error) throw new Error("Something went wrong");
           return res.status(200).json({
             message: "Successfully Completed",
@@ -27,4 +26,4 @@ const createAdministrater =async (req,res,next)=>{
 
 }
 
-export default createAdministrater;
+export default createDoctor;

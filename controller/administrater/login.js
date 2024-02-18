@@ -1,16 +1,17 @@
-import {loginMdl} from "../../model/admin/index.js";
+import {loginMdl} from "../../model/administrater/index.js";
 import {generateToken} from "../../utils/index.js";
 let token; 
-const AdminLogin =async (req,res,next)=>{
+const Login =async (req,res,next)=>{
   try{
     const username = req.body.username
     const password = req.body.password
     console.log(username);
     console.log(password);
     const data = await loginMdl({ username,password });
+    console.log(data,"adminis stara");
     if (data instanceof Error) throw new Error("Something went wrong");
     token = generateToken(data.username)
-          let role = 'admin';
+          let role = data.role;
           return res.status(200).json({
             message: "Successfully Completed",
             token,
@@ -22,8 +23,6 @@ const AdminLogin =async (req,res,next)=>{
     console.error(error)
     next(error)
   }
-  
-
 }
 
-export default AdminLogin;
+export default Login;
